@@ -36,13 +36,23 @@ class Api::V1::UsersController < ApplicationController
       user_params = JSON.parse(user_response.body)
 
       #Create new user based on response, or find existing user in database
-      user = User.find_or_create_by(username: user_params["id"],
+      @user = User.find_or_create_by(username: user_params["id"],
                         spotify_url: user_params["external_urls"]["spotify"],
                         href: user_params["href"],
                         uri: user_params["uri"])
-      user.update(access_token: auth_params["access_token"], refresh_token: auth_params["refresh_token"])
+      @user.update(access_token: auth_params["access_token"], refresh_token: auth_params["refresh_token"])
 
-      user.refresh_access_token
+      @user.refresh_access_token
+
+      # Create and send JWT Token for user
+        # payload = {user_id: @user.id}
+        # token = issue_token(payload)
+        # render json: { jwt: token, user: {
+        #                     username: @user.username,
+        #                     spotify_url: @user.spotify_url,
+        #                     profile_img_url: @user.profile_img_url
+        #                   }
+        #              }
 
       #redirect to React front-end
       redirect_to "http://localhost:3001/success"

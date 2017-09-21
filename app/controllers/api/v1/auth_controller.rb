@@ -8,7 +8,7 @@ class Api::V1::AuthController < ApplicationController
     query_params = {
       client_id: ENV['CLIENT_ID'],
       response_type: "code",
-      redirect_uri: ENV['REDIRECT_URI'],
+      redirect_uri: 'http://localhost:3001/success',
       scope: "user-library-read user-top-read user-read-recently-played playlist-read-private",
       show_dialog: true
     }
