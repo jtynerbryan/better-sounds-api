@@ -6,14 +6,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    # handle response from Spotify
-    if params[:error]
-      puts "Login Error", params
-
-      # if login failed, redirect to front-end error message
-      redirect_to "http://localhost:3001/failure"
-    else
-      # if login succeeded, assemble and send request to Spotify for access and refresh tokens
       body = {
         grant_type: "authorization_code",
         code: params[:code],
@@ -23,12 +15,14 @@ class Api::V1::UsersController < ApplicationController
       }
 
       auth_response = RestClient.post('https://accounts.spotify.com/api/token', body)
+
+
       #convert response.body to JSON for assignment
       auth_params = JSON.parse(auth_response.body)
       #assemble and send request to Spotify for user profile information
       header = {
         Authorization: "Bearer #{auth_params["access_token"]}"
-        }
+      }
 
       user_response = RestClient.get("https://api.spotify.com/v1/me", header)
 
@@ -55,8 +49,7 @@ class Api::V1::UsersController < ApplicationController
         #              }
 
       #redirect to React front-end
-      redirect_to "http://localhost:3001/success"
-    end
+      render json: {user: @user}
 
 
   end
