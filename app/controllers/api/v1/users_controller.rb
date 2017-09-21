@@ -48,6 +48,7 @@ class Api::V1::UsersController < ApplicationController
       redirect_to "http://localhost:3001/success"
     end
 
+
   end
 
 end

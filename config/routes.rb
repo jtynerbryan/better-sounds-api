@@ -5,6 +5,8 @@ Rails.application.routes.draw do
         get 'login', :to => 'auth#spotify_request'
         get '/user/create', :to => 'users#create'
         get '/user/show', :to => 'users#show'
+        get '/top_tracks', :to => 'tracks#top_tracks'
+        get 'recently_played_tracks', :to => 'tracks#recently_played_tracks'
       end
   end
 end
