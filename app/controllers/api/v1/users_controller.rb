@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
       @user.update(access_token: auth_params["access_token"], refresh_token: auth_params["refresh_token"])
 
       @user.refresh_access_token
-      # Create and send JWT Token for user
+      # Create and send JWT Token along with user info
         payload = {user_id: @user.id}
         @token = issue_token(payload)
         render json: { jwt: @token, user: {
@@ -45,6 +45,6 @@ class Api::V1::UsersController < ApplicationController
                             id: @user.id
                             }
                      }
-end
+  end
 
 end
