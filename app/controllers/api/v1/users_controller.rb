@@ -43,12 +43,9 @@ class Api::V1::UsersController < ApplicationController
         render json: { jwt: @token, user: {
                             username: @user.username,
                             spotify_url: @user.spotify_url
+                            id: @user.id
                             }
                      }
-
-      #redirect to React front-end
-      # render json: {user: @user}
-
 
   end
 
