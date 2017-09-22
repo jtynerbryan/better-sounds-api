@@ -37,19 +37,17 @@ class Api::V1::UsersController < ApplicationController
       @user.update(access_token: auth_params["access_token"], refresh_token: auth_params["refresh_token"])
 
       @user.refresh_access_token
-
       # Create and send JWT Token for user
-        # payload = {user_id: @user.id}
-        # token = issue_token(payload)
-        # render json: { jwt: token, user: {
-        #                     username: @user.username,
-        #                     spotify_url: @user.spotify_url,
-        #                     profile_img_url: @user.profile_img_url
-        #                   }
-        #              }
+        payload = {user_id: @user.id}
+        @token = issue_token(payload)
+        render json: { jwt: @token, user: {
+                            username: @user.username,
+                            spotify_url: @user.spotify_url
+                            }
+                     }
 
       #redirect to React front-end
-      render json: {user: @user}
+      # render json: {user: @user}
 
 
   end

@@ -2,25 +2,23 @@ class ApplicationController < ActionController::API
 
   # this will take a hash and return a jwt token
   def issue_token(payload)
-    JWT.encode(payload, ENV["JWT_SECRET"], ENV["JWT_ALGORITHM"])
+    JWT.encode(payload, ENV['SECRET'], ENV['ALGO'])
   end
 
-  def decode_token(payload)
+  def decode_token(token)
     begin
-      JWT.decode(payload, ENV["JWT_SECRET"], ENV["JWT_ALGORITHM"])
+      JWT.decode(token, ENV["SECRET"], ENV["ALGO"])
     rescue JWT::DecodeError
       return nil
     end
   end
 
   def token
-
     if bearer_token = request.headers["Authorization"]
       jwt_token = bearer_token.split(" ")[1]
     else
       # no return
     end
-
   end
 
   def current_user
