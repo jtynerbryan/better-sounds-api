@@ -16,7 +16,6 @@ class Api::V1::UsersController < ApplicationController
 
       auth_response = RestClient.post('https://accounts.spotify.com/api/token', body)
 
-
       #convert response.body to JSON for assignment
       auth_params = JSON.parse(auth_response.body)
       #assemble and send request to Spotify for user profile information
@@ -42,11 +41,10 @@ class Api::V1::UsersController < ApplicationController
         @token = issue_token(payload)
         render json: { jwt: @token, user: {
                             username: @user.username,
-                            spotify_url: @user.spotify_url
+                            spotify_url: @user.spotify_url,
                             id: @user.id
                             }
                      }
-
-  end
+end
 
 end
