@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get '/users/show', :to => 'users#show'
         post '/top_tracks', :to => 'tracks#top_tracks'
         post 'recently_played_tracks', :to => 'tracks#recently_played_tracks'
+        post 'audio_features', :to => 'audio_features#audio_features'
       end
   end
 end
