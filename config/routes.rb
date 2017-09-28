@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         post '/recently_played_tracks', :to => 'tracks#recently_played_tracks'
         post '/audio_features', :to => 'audio_features#audio_features'
         post '/related_artists', :to => 'related_artists#related_artists'
+        post '/related_artists_top_tracks', :to => 'related_artists#top_tracks'
         post '/top_artists', :to => 'top_artists#top_artists'
       end
   end
