@@ -13,10 +13,10 @@ class Api::V1::TracksController < ApplicationController
     end
 
     def recently_played_tracks
-      user = User.find(1)
+      @user = User.find(params[:id])
 
       header = {
-          Authorization: "Bearer #{user.access_token}"
+          Authorization: "Bearer #{@user.access_token}"
       }
 
       tracks_response = RestClient.get("https://api.spotify.com/v1/me/player/recently-played?limit=50", header)
