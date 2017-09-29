@@ -4,7 +4,7 @@ class Api::V1::PlaylistController < ApplicationController
 
   end
 
-  def create_playlist
+  def create_playlist(user_id, playlist_name)
 
   end
 
