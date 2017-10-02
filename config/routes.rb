@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         post '/related_artists', :to => 'related_artists#related_artists'
         post '/related_artists_top_tracks', :to => 'related_artists#top_tracks'
         post '/top_artists', :to => 'top_artists#top_artists'
-        post '/create_playlist', :to => 'playlists#create'
+        post '/create_playlist', :to => 'playlists#create_playlist'
         post 'add_tracks_to_playlist', :to => 'playlists#add_tracks'
       end
   end

@@ -9,7 +9,7 @@ class Api::V1::AuthController < ApplicationController
       client_id: ENV['CLIENT_ID'],
       response_type: "code",
       redirect_uri: 'http://localhost:3001/success',
-      scope: "user-library-read user-top-read user-read-recently-played playlist-read-private",
+      scope: "user-library-read user-top-read user-read-recently-played playlist-read-private playlist-modify-public playlist-modify-private playlist-read-collaborative",
       show_dialog: true
     }
     url = "https://accounts.spotify.com/authorize/"
