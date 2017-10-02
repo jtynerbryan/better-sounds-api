@@ -1,12 +1,12 @@
 class Api::V1::PlaylistsController < ApplicationController
 
-  def get_playlist
-    @user = User.find(params[:user_id])
-    @playlists = @user.playlists
+  def show
+    user = User.find(params[:user_id])
+    playlists = user.playlists
+    render json: {playlists: playlists}
   end
 
-  def create_playlist
-
+  def create
     @user = User.find(params[:user_id])
 
     header = {
