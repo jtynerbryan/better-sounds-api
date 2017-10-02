@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :playlists
 
   def access_token_expired?
     (Time.now - self.updated_at) > 3300
@@ -13,7 +14,7 @@ class User < ApplicationRecord
       body = {
         grant_type: "refresh_token",
         refresh_token: self.refresh_token,
-        client_id:  "1c9a79a2887a4f6cb526207debc021f1",
+        client_id: "1c9a79a2887a4f6cb526207debc021f1",
         client_secret: "f2b971956ac74ceb985bf37f369b4918"
       }
       # Send request and updated user's access_token
