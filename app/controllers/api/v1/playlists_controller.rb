@@ -1,9 +1,35 @@
 class Api::V1::PlaylistsController < ApplicationController
 
   def show
-    user = User.find(params[:user_id])
-    playlists = user.playlists
-    render json: {playlists: playlists}
+    @user = User.find(params[:user_id])
+    playlists = @user.playlists
+
+    header = {
+        Authorization: "Bearer #{@user.access_token}"
+    }
+
+    # the below process compares a user's spotify playlists with the playlists in my database.
+    # if a user has deleted a playlist on Spotify that was created by this app, we need to delete that record
+    # so that wer'e not trying to display a playlist in the frontend that no longer exists.
+
+    #fetch a current user's spotify playlists, then parse them
+    users_playlists_response = RestClient.get("https://api.spotify.com/v1/me/playlists?limit=50", header)
+    parsed_users_playlists = JSON.parse(users_playlists_response.body)
+
+    # create an array of just playlist id's to compare agianst the database
+    spotify_playlist_ids = parsed_users_playlists['items'].map { |playlist| playlist['id'] }
+
+    # iterate over the playlists in my database, destroy record if it is not included in the array of Spotify playlist id's
+    playlists.each do |playlist|
+      if !spotify_playlist_ids.include?(playlist.spotify_id)
+        Playlist.destroy(playlist.id)
+      end
+    end
+
+    #in case any playlists have been destroyed, ask the database for a user's playlists again
+    updated_playlists = @user.playlists
+
+    render json: {playlists: updated_playlists}
   end
 
   def create
