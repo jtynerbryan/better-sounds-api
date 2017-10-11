@@ -43,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
                             username: @user.username,
                             spotify_url: @user.spotify_url,
                             id: @user.id
-                            }
+                          }
                      }
   end
 

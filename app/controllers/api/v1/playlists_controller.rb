@@ -10,7 +10,7 @@ class Api::V1::PlaylistsController < ApplicationController
     @user = User.find(params[:user_id])
 
     header = {
-      "Authorization" => "Bearer #{@user.access_token}" ,
+      "Authorization" => "Bearer #{@user.access_token}",
       "Content-Type" => "application/json"
     }
 
@@ -30,8 +30,8 @@ class Api::V1::PlaylistsController < ApplicationController
         uris: params[:track_ids].split(',')
       }
 
+      # add tracks to new empty playlist
       tracks_api_url = "https://api.spotify.com/v1/users/#{@user.username}/playlists/#{new_playlist["id"]}/tracks"
-
       tracks_api_response = RestClient.post(tracks_api_url, track_body.to_json, header)
       parsed_tracks_api_response = JSON.parse(tracks_api_response.body)
 
