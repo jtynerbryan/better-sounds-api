@@ -5,7 +5,7 @@
 ## Features
 * Authorizes users through [Spotify's Web API Authorization](https://developer.spotify.com/web-api/authorization-guide/) to access a user's top tracks, recently played tracks, top artists, and playlists<br>
 * When prompted by React front end app, makes specific requests for user data to Spotify's API and renders data to the front end
-* Persists Users and Playlists created through the app in [PostgreSQL](https://www.postgresql.org/)
+* Persists Users and Playlists created through the app in [PostgreSQL](https://www.postgresql.org/) database
 ## Architecture
 * See app folder for application code
 * Utilizes the [Spotify Web API](https://developer.spotify.com/web-api/authorization-guide/) to authorize users and access private data
