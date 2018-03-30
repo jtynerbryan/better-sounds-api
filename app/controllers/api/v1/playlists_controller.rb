@@ -5,7 +5,7 @@ class Api::V1::PlaylistsController < ApplicationController
     playlists = @user.playlists
 
     header = {
-        Authorization: "Bearer #{@user.access_token}"
+      Authorization: "Bearer #{@user.access_token}"
     }
 
     # the below process compares a user's spotify playlists with the playlists in my database.

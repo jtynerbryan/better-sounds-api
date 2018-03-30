@@ -4,7 +4,7 @@ class Api::V1::TracksController < ApplicationController
       @user  = User.find(params[:id])
 
       header = {
-          Authorization: "Bearer #{@user.access_token}"
+        Authorization: "Bearer #{@user.access_token}"
       }
 
       tracks_response = RestClient.get("https://api.spotify.com/v1/me/top/tracks?limit=50", header)
@@ -16,7 +16,7 @@ class Api::V1::TracksController < ApplicationController
       @user = User.find(params[:id])
 
       header = {
-          Authorization: "Bearer #{@user.access_token}"
+        Authorization: "Bearer #{@user.access_token}"
       }
 
       tracks_response = RestClient.get("https://api.spotify.com/v1/me/player/recently-played?limit=50", header)
