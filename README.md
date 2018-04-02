@@ -3,7 +3,7 @@
 * Provides data and makes Spotify API calls for React front end ([repo](https://github.com/jtynerbryan/better-sounds))<br>
 * View live site [here](https://bettersoundz.herokuapp.com) (please be patient while Heroku wakes up)
 ## Features
-* Authorizes users through [Spotify's Web API Authorization](https://developer.spotify.com/web-api/authorization-guide/) to access a user's top tracks, recently played tracks, top artists, and playlists<br>
+* Authorizes users through [Spotify's Web API Authorization](https://developer.spotify.com/web-api/authorization-guide/) to access a user's top tracks, audio features, top artists, and playlists<br>
 * When prompted by React front end app, makes specific requests for user data to Spotify's API and renders data to the front end
 * Persists Users and Playlists created through the app in [PostgreSQL](https://www.postgresql.org/) database
 ## Architecture
